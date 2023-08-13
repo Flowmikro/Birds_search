@@ -1,0 +1,24 @@
+{% extends 'birds/base.html' %}
+
+{% block title %}Список{% endblock %}
+
+{% block content %}
+
+{% for bird in birds %}
+
+<div class="card" style="width: 18rem;">
+    {% if bird.image %}
+    <img src="{{ bird.image.url }}" class="card-img-top">
+    {% else %}
+    <p>Фотографии нет</p>
+    {% endif %}
+    <div class="card-body">
+        <h5 class="card-title">Название птицы:</h5>
+        <p class="card-text">{{ bird.name }}.</p>
+        <a href="{% url 'bird_detail' pk=bird.pk %}" class="btn btn-primary">Полная информация</a>
+    </div>
+</div>
+
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'birds/base.html' %}
+
+{% block title %}{{ bird.name }}{% endblock %}
+
+{% block content %}
+
+<h1>{{ bird.name }}</h1>
+<hr>
+
+{% if bird.image %}
+    <img src="{{ bird.image.url }}"><br>
+{% else %}
+    <p>Фотографии нет</p>
+{% endif %}<hr>
+<a href="{% url 'delete_bird' pk=bird.pk %}" class="btn btn-primary">Удалить птицу</a>
+<h2>Обнаружено птиц: {% if birds_quantity %}{{ birds_quantity }}{% else %}0{%endif%}</h2>
+<h6>Самый популярный у птицы город: {% if popular_city %}{{ popular_city.city }}, количество: {{ popular_city.total_quantity }}{% else %}нет информации{% endif %}</h6>
+<h6>Самый популярный у птицы район: {% if popular_region %}{{ popular_region.region }}, г.{{ popular_region.city }}, количество: {{ popular_region.total_quantity }}{% else %}нет информации{% endif %}</h6>
+<h6>Самая популярная у птицы улица: {% if popular_street %}{{ popular_street.street }}, р-он.{{ popular_street.region }}, г.{{ popular_street.city }}, количество: {{ popular_street.total_quantity }}{% else %}нет информации{% endif %}</h6><hr>
+<h3>Общая информация</h3>
+<ul>
+{% for info in bird_info %}
+    <li>Город: {{ info.city }}</li>
+    <li>Район: {{ info.region }}</li>
+    <li>Улица: {{ info.street }}</li>
+    <li>Количество: {{ info.quantity }}</li>
+    <li>Запись создана: {{ info.created }}</li><hr>
+    {% empty %}
+    <li>Нет информации</li>
+{% endfor %}
+</ul>
+
+{% endblock %}

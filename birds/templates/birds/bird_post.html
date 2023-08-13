@@ -1,0 +1,15 @@
+{% extends 'birds/base.html' %}
+
+{% block title %}Добавить{% endblock %}
+
+{% block content %}
+
+<div class="text">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Добавить</button>
+    </form>
+</div>
+
+{% endblock %}
