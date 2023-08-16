@@ -8,10 +8,9 @@ from .services import _validate_form
 
 
 class BirdFormTest(TestCase):
-    @classmethod
-    def setUpTestData(cls):
-        cls.user = User.objects.create_user(username='testuser', password='testpass')
-        cls.bird = BirdModel.objects.create(name='Test Bird')
+    def setUp(self) -> None:
+        self.user = User.objects.create_user(username='testuser', password='testpass')
+        self.bird = BirdModel.objects.create(name='Test Bird')
 
     def test_validate_form_and_save_valid_form(self):
         form_data = {'name': 'New Bird', 'image': ''}
@@ -27,10 +26,9 @@ class BirdFormTest(TestCase):
 
 
 class BirdsListTest(TestCase):
-    @classmethod
-    def setUpTestData(cls):
-        cls.user = User.objects.create_user(username='testuser', password='testpass')
-        cls.bird = BirdModel.objects.create(name='Test Bird')
+    def setUp(self) -> None:
+        self.user = User.objects.create_user(username='testuser', password='testpass')
+        self.bird = BirdModel.objects.create(name='Test Bird')
 
     def test_birds_list(self):
         self.client.login(username='testuser', password='testpass')
