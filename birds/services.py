@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404
 from birds.models import BirdModel, AddBirdModel
 
 
-def validate_form(form):
+def _validate_form(form):
     """Проверяем правильность заполнения формы"""
     if form.is_valid():
         form.save()

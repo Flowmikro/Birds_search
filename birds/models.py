@@ -2,6 +2,7 @@ from django.db import models
 
 
 class BirdModel(models.Model):
+    """Модель для создания птицы"""
     name = models.CharField('Название', max_length=60, unique=True)
     image = models.ImageField('Фото', upload_to='media/', blank=True)
 
@@ -14,6 +15,7 @@ class BirdModel(models.Model):
 
 
 class AddBirdModel(models.Model):
+    """Модель для подсчета количества птиц"""
     bird = models.ForeignKey(BirdModel, on_delete=models.CASCADE, verbose_name='Птица')
     quantity = models.PositiveIntegerField('Количество', default=1)
     city = models.CharField('Город', max_length=60, default=None)
@@ -22,6 +24,7 @@ class AddBirdModel(models.Model):
     created = models.DateTimeField('Создано', auto_now_add=True)
 
     def save(self, *args, **kwargs):
+        # переводим полученное в верхний регистр
         self.city = self.city.title()
         self.region = self.region.title()
         self.street = self.street.title()
