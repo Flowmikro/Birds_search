@@ -6,7 +6,7 @@ class BirdModel(models.Model):
     image = models.ImageField('Фото', upload_to='media/', blank=True)
 
     def save(self, *args, **kwargs):
-        self.name = self.name.title()  # переводим полученное в верхний регист
+        self.name = self.name.title()  # переводим полученное в верхний регистр
         return super(BirdModel, self).save(*args, **kwargs)
 
     def __str__(self):
